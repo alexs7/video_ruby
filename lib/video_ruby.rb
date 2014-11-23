@@ -1,5 +1,6 @@
-require "video_ruby/version"
-require "video_ruby/video"
+require_relative "video_ruby/version"
+require_relative "video_ruby/image_processor"
+require_relative "video_ruby/frame"
 
 module VideoRuby
 
@@ -10,16 +11,16 @@ module VideoRuby
     image_processor = nil
 
     #Break and Build the Video
-    clip=Video.new(video_location)
+    #clip=Video.new(video_location)
 
-    puts "Extracting frames. This may take a while..."
-    clip.extract_frames
+    #puts "Extracting frames. This may take a while..."
+    #clip.extract_frames
 
-    # image_processor = ImageProcessor.new("frames")
-    # image_processor.load_frames
+    #image_processor = ImageProcessor.new("frames/")
+    #image_processor.load_frames
 
-    # puts "Processing Images... This will take a while..."
-    # image_processor.invert_color
+    #puts "Processing Image(s)... This will take a while..."
+    #image_processor.greyscale(Frame.new("frames/frame_000092.png"))
 
     # puts "Extracting audio..."
     # extracted_audio = clip.extract_audio
@@ -35,4 +36,13 @@ module VideoRuby
 
     # puts "Done!"
   end 
+
+  def self.greyscale_image(image_path)
+    absolute_path = File.absolute_path(image_path)
+    ImageProcessor.new.greyscale(Frame.new(absolute_path))
+  end
+
 end
+
+#image_path = File.absolute_path("../lena.png") #initialize file reading here?
+#VideoRuby.greyscale_image(image_path)
