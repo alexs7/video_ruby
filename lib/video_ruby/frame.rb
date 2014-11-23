@@ -5,7 +5,13 @@ class Frame
   attr_reader :frame_data, :file_path, :height, :width
 
   def initialize(image_path=nil)
-    @frame_data=ChunkyPNG::Image.from_file(image_path) if image_path
+    if image_path
+      if !File.exist?(image_path)
+        raise ArgumentError.new("File does not exist!")  
+      end
+      @frame_data=ChunkyPNG::Image.from_file(image_path)
+    end
+
     @height = @frame_data.height
     @width = @frame_data.width
     @file_path = image_path
@@ -44,8 +50,8 @@ class Frame
     @frame_data[x,y]=ChunkyPNG::Color.rgba(r, g, b, opacity)
   end
 
-  def save
-    @frame_data.save(@file_path)
+  def save(filename_extension=nil)
+    @frame_data.save(@file_path+filename_extension)
   end
 
 end

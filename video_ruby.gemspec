@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake", "~> 0"
   spec.add_dependency "facter", "~> 2.2.0", ">= 2.2.0"
-  spec.add_dependency "debugger", "~> 1.6.0", ">= 1.6.0"
+  spec.add_dependency "byebug", "~> 3.5.1", ">= 3.5.1"
   spec.add_dependency "json", "~> 1.8.1", ">= 1.8.1"
+  spec.add_dependency "chunky_png", "~> 1.3.3", ">= 1.3.3"
 end

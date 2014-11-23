@@ -1,7 +1,7 @@
-require "video_ruby/video_data_parser"
-require "video_ruby/tools"
-require "video_ruby/audio"
-require "video_ruby/video_conversion_tools"
+require_relative "video_data_parser"
+require_relative "tools"
+require_relative "audio"
+require_relative "video_conversion_tools"
 
 class Video
 

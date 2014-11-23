@@ -1,4 +1,4 @@
-require "video_ruby/video"
+require_relative "video"
 
 module VideoConversionTools
 

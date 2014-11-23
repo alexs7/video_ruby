@@ -1,14 +1,16 @@
+require_relative "frame"
 require 'facter'
-require "video_ruby/frame"
 
 class ImageProcessor
 
 	attr_reader	:frames_location, :all_frames
 
-	def initialize(frames_dir)
-		if !File.directory?(frames_dir) || Dir["frames/*"].empty?
-			raise ArgumentError.new("You must provide a non-empty frames dir!")  
-		end
+	def initialize(frames_dir=nil)
+    if frames_dir
+  		if !File.directory?(frames_dir) || Dir["frames/*"].empty?
+  			raise ArgumentError.new("You must provide a non-empty frames dir!")  
+  		end
+    end
 
 		@all_frames = []
 		@frames_location = frames_dir
@@ -17,7 +19,7 @@ class ImageProcessor
 	def load_frames # returns an array ChunkyPNG Objects
 		all_frames_files = []
 
-		Dir.glob(@frames_location+"/*.png") do |frame_file|
+		Dir.glob(@frames_location+"*.png") do |frame_file|
 			all_frames_files << frame_file
 		end
 		
@@ -29,11 +31,15 @@ class ImageProcessor
 	end
 
 	def greyscale(frame=nil)
-    return frame.greyscale if frame
-		@all_frames.each do |frame|
-			frame.greyscale
-			frame.save
-		end
+    if frame
+        frame.greyscale
+        frame.save("_greyscaled")
+      else
+        @all_frames.each do |frame|
+        frame.greyscale
+        frame.save
+      end
+    end
 	end
 
   def invert_color(frame=nil)
