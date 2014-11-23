@@ -51,7 +51,9 @@ class Frame
   end
 
   def save(filename_extension=nil)
-    @frame_data.save(@file_path+filename_extension)
+    file_name = @file_path.split(".")[0]
+    file_extension = @file_path.split(".")[1]
+    @frame_data.save(file_name+filename_extension+"."+file_extension)
   end
 
 end
