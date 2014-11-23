@@ -42,6 +42,11 @@ module VideoRuby
     ImageProcessor.new.greyscale(Frame.new(absolute_path))
   end
 
+  def self.invert_image_color(image_path)
+    absolute_path = File.absolute_path(image_path)
+    ImageProcessor.new.invert_color(Frame.new(absolute_path))
+  end
+
 end
 
 #image_path = File.absolute_path("../lena.png") #initialize file reading here?

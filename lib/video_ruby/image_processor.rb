@@ -43,10 +43,14 @@ class ImageProcessor
 	end
 
   def invert_color(frame=nil)
-    return frame.invert_color if frame
-    @all_frames.each do |frame|
-      frame.invert_color
-      frame.save
+    if frame
+        frame.invert_color
+        frame.save("_inverted_color")
+      else
+        @all_frames.each do |frame|
+        frame.invert_color
+        frame.save
+      end
     end
   end
 
