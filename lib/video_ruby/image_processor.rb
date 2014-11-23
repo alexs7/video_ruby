@@ -54,6 +54,18 @@ class ImageProcessor
     end
   end
 
+  def apply_sobel_filter(frame=nil)
+    if frame
+        frame.apply_sobel_filter
+        frame.save("_applied_sobel_filter")
+      else
+        @all_frames.each do |frame|
+        frame.apply_sobel_filter
+        frame.save
+      end
+    end
+  end
+
 	# def self.greyscale_all_frames_processes(frames_dir,output_dir)
 	# 	number_of_frames = get_frames_count(frames_dir)
 	# 	img_processor = ImageProcessor.new(frames_dir)

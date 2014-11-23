@@ -47,7 +47,12 @@ module VideoRuby
     ImageProcessor.new.invert_color(Frame.new(absolute_path))
   end
 
+  def self.apply_sobel_filter(image_path)
+    absolute_path = File.absolute_path(image_path)
+    ImageProcessor.new.apply_sobel_filter(Frame.new(absolute_path))   
+  end
+
 end
 
-#image_path = File.absolute_path("../lena.png") #initialize file reading here?
-#VideoRuby.greyscale_image(image_path)
+image_path = File.absolute_path("lena.png") #initialize file reading here?
+VideoRuby.apply_sobel_filter(image_path)
